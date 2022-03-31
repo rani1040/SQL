@@ -1,1 +1,140 @@
-SQL stands for structured Query language
+SQL stands for structured Query language,which is used to interact with data store in Relatinal databse
+we can think relational database as a collection of tables.
+Each row, or record, of a table contains information about a single entity.
+For example, in a table representing employees, each row represents a single person. 
+Each column, or field, of a table contains a single attribute for all rows in the table. 
+For example, in a table representing employees, we might have a column containing first and last names for all employees.
+EMPLOYEE TABLE
+id	name	age	nationality
+1	Jessica	22	Ireland
+2	Gabriel	48	France
+3	Laura	  36	USA
+
+
+1. SELECTing single columns
+we can select data from a table using select statement,in the below query, SELECT and FROM are called keywords. In SQL, keywords are not case-sensitive
+   for example : SELECT column_name
+                 FROM Table_Name;
+                 
+                 
+2. SELECTing multiple columns
+To select multiple columns from a table, simply separate the column names with commas!
+   for example: SELECT column1_name, column2_name
+                FROM Table_name;
+Typing out every column name
+  for example:
+    SELECT *
+    FROM people;
+If you only want to return a certain number of results, you can use the LIMIT keyword to limit the number of rows returned:
+  for exanple:
+    SELECT *
+    FROM people
+    LIMIT 10;
+
+3. SELECT DISTINCT
+If you want to select all the unique values from a column, you can use the DISTINCT keyword.
+for example:
+  SELECT DISTINCT language
+  FROM films;
+  
+4.Learning to COUNT
+ The COUNT() function lets you do this by returning the number of rows in one or more columns.
+ For example, this code gives the number of rows in the people table:
+for example:
+    SELECT COUNT(*)
+    FROM people;
+    
+5.Filtering results
+In SQL, the WHERE keyword allows you to filter based on both text and numeric values in a table. There are a few different comparison operators you can use:
+
+= equal
+<> not equal
+< less than
+> greater than
+<= less than or equal to
+>= greater than or equal to
+For example, you can filter text records such as title. The following code returns all films with the title 'Metropolis':
+
+SELECT title
+FROM films
+WHERE title = 'Metropolis';
+Notice that the WHERE clause always comes after the FROM statement!
+
+Note that in this course we will use <> and not != for the not equal operator, as per the SQL standard.
+
+
+SELECT title
+FROM films
+WHERE country = 'China';
+Now it's your turn to practice using WHERE with text values!
+
+Important: in PostgreSQL (the version of SQL we're using), you must use single quotes with WHERE.
+
+6. WHERE AND
+      SELECT title
+      FROM films
+      WHERE release_year > 1994
+      AND release_year < 2000;
+
+
+When combining AND and OR, be sure to enclose the individual clauses in parentheses, like so:
+SELECT title
+FROM films
+WHERE (release_year = 1994 OR release_year = 1995)
+AND (certification = 'PG' OR certification = 'R');
+Otherwise, due to SQL's precedence rules, you may not get the results you're expecting!
+
+7.BETWEEN
+Checking for ranges like this is very common, so in SQL the BETWEEN keyword provides a useful shorthand for filtering values within a specified range.t's important to remember that BETWEEN is inclusive, meaning the beginning and end values are included in the results!
+SELECT title
+FROM films
+WHERE release_year
+BETWEEN 1994 AND 2000;
+Similar to the WHERE clause, the BETWEEN clause can be used with multiple AND and OR operators
+SELECT name
+FROM kids
+WHERE age BETWEEN 2 AND 12
+AND nationality = 'USA';
+
+
+8. IN
+IN operator allows you to specify multiple values in a WHERE clause, making it easier and quicker to specify multiple OR conditions! Neat, right?
+SELECT name
+FROM kids
+WHERE age IN (2, 4, 6, 8, 10)
+
+
+
+
+8.NULL
+In SQL, NULL represents a missing or unknown value. You can check for NULL values using the expression IS NULL. For example, to count the number of missing birth dates in the people table:
+
+SELECT COUNT(*)
+FROM people
+WHERE birthdate IS NULL;
+As you can see, IS NULL is useful when combined with WHERE to figure out what data you're missing.
+
+Sometimes, you'll want to filter out missing values so you only get results which are not NULL. To do this, you can use the IS NOT NULL operator.
+
+For example, this query gives the names of all people whose birth dates are not missing in the people table.
+
+SELECT name
+FROM people
+WHERE birthdate IS NOT NULL;
+
+9. NOT LIKE
+the LIKE operator can be used in a WHERE clause to search for a pattern in a column. To accomplish this, you use something called a wildcard as a placeholder for some other values. There are two wildcards you can use with LIKE:
+
+The % wildcard will match zero, one, or many characters in text. For example, the following query matches companies like 'Data', 'DataC' 'DataCamp', 'DataMind', and so on:
+
+SELECT name
+FROM companies
+WHERE name LIKE 'Data%';
+The _ wildcard will match a single character. For example, the following query matches companies like 'DataCamp', 'DataComp', and so on:
+
+SELECT name
+FROM companies
+WHERE name LIKE 'DataC_mp';
+You can also use the NOT LIKE operator to find records that don't match the pattern you specify.
+
+10. 
