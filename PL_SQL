@@ -1,0 +1,195 @@
+# Declaration of global and local variable
+DECLARE
+//global variable
+n1 number:=1;
+n2 number:=2;
+BEGIN 
+dbms_output.put_line('n1 ="||n1);
+  DECLARE
+  //local varaible
+  n1:=3;
+  n2:=6;
+  BEGIN
+  dbms_output.put_line('n1 ="||n1);
+  END;
+END;
+/
+#VARIABLE ATTRIBUTES
+
+IF YOU WRITE INCORRECT DATATYPE OF VARIABLE IT WILL GIVEW ERROR 
+
+%TYPE AND %ROWTYPE ATTRUBUTES
+%--ATTRIBUTE INDICATOR
+%type
+    <var_name> <tab_name>.<column_name>%TYPE;  
+    SALARY emp.sal%type
+    example
+    DECLARE
+    SALARY EMP.SAL%TYPE;
+    BEGIN
+    ecode:=&ecode;
+    select sal into salary from emp where empno=ecode;
+    dbms_output.put_lines(ecode);
+    end;
+    /
+<var_name> <tab_name>.ROW%TYPE;  
+DECLARE
+employee emp.%row type;
+BEGIN
+employee.emp_no:=20;
+5 employee.ename:='rani';
+
+#constant are the variable whose values remained unchanged throughtout the program
+example
+DECLARE
+pi constant number:=3.14;
+radius number(5,2);
+BEGIN
+radius:=98;
+dia=2*radius;
+c=2.0*pi.*radius;
+dbms_output.put_line(c);
+end;
+/
+
+iterals are the explicit numeric, character, string or boolean values which are not represented by an identifier. For example: TRUE, NULL, etc. are all literals of type boolean. PL/SQL literals are case-sensitive. There are following kinds of literals in PL/SQL:
+
+Numeric Literals
+Character Literals
+String Literals
+BOOLEAN Literals
+Date and Time Literals
+
+
+# if else statement in pl-sql
+example
+DECLARE
+a numbrer(3):=45;
+BEGIN
+    if (a>20)
+    then
+    dbms_output.put_line('greater than 20');
+    elsif (a<20)
+    then 
+    dbms_output.putline('less than 20')
+    else
+    dbms_output.putline(a)
+    endif;
+end;
+/
+
+#types of conditions 
+
+if (condition)
+then
+print()
+endif;
+
+if (condition)
+then
+print()
+else
+print
+endif;
+
+if (condition)
+then
+print()
+elsif (condition)
+then
+print()
+end;
+
+if (condition)
+then
+print()
+elsif (condition)
+then
+print()
+else
+print()
+endif
+
+
+
+# case statement
+example
+DECLARE 
+grade char(!):='A';
+BEGIN 
+CASE grade
+    when 'A' then dbms_output.put_line();
+    when 'B' then dbms_output.put_line();
+    when 'C' thendbms_output.put_line();
+    when 'D' thendbms_output.put_line();
+    else then dbms_output.put_line();
+END CASE;
+END;
+
+
+#basic loop
+PL/SQL exit loop is used when a set of statements is to be executed at least once before the termination of the loop.
+There must be an EXIT condition specified in the loop, otherwise the loop will get into an infinite number of iterations.
+After the occurrence of EXIT condition, the process exits the loop.
+
+example
+DECLARE 
+a number:=1;
+BEGIN
+LOOP
+dbms_output.put_line(a);
+EXIT WHEN a=10;
+a=a+1;
+END LOOP;
+END;
+
+
+#while loop
+DECLARE
+i number:=1;
+BEGIN
+while (i<10) LOOP
+dbms_output.put_line(i)
+i=i+1
+END LOOP;
+END;
+
+# for loop
+DECLARE 
+A NUMBER;
+BEGIN
+A:=1
+for i in REVERSE 1..10
+loop
+dbms_output.put_line(a*i);
+END LOOP;
+END;
+
+
+# CONTINUE STATEMENT The continue statement is not supported in Oracle 10g. Oracle 11g supports this as a new feature.
+DECLARE
+a number :=1
+BEGIN
+loop then
+    if i<3 then 
+    i=i+3
+    Continue
+    end if;
+    i=i+3
+    print()
+    exit when x=5;
+end loop;
+end;
+
+
+Restriction on GOTO statement
+Following is a list of some restrictions imposed on GOTO statement.
+
+Cannot transfer control into an IF statement, CASE statement, LOOP statement or sub-block.
+Cannot transfer control from one IF statement clause to another or from one CASE statement WHEN clause to another.
+Cannot transfer control from an outer block into a sub-block.
+Cannot transfer control out of a subprogram.
+Cannot transfer control into an exception handler.
+ 
+
+
